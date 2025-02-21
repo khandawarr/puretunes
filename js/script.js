@@ -17,7 +17,7 @@ function convertSecondsToTime(seconds) {
 
 async function getNasheeds(Folder) {
     currFolder = Folder
-    let a = await fetch(`http://127.0.0.1:5500/${Folder}/`);
+    let a = await fetch(`https://puretunes1.netlify.app/${Folder}/`);
     let response = await a.text();
     // console.log(response);
     let div = document.createElement("div");
