@@ -124,38 +124,30 @@ nasheedUl.addEventListener("touchstart", handleSongSelection); // Mobile-specifi
     })
 
     // Add event listener to the previous button
-previous.addEventListener("click", () => {
-    currentSong.pause();
-    console.log("previous clicked");
-    console.log(currentSong);
-
-    // Extract the current song's filename
-    let currentSongName = currentSong.src.split("/").pop(); // get the filename from the URL
-
-    // Find the index of the current song in the nasheeds array
-    let index = nasheeds.indexOf(currentSongName);
-
-    // Play the previous song if the index is valid
-    if (index > 0) {
-        playNasheed(nasheeds[index - 1]);
-    }
-});
+    previous.addEventListener("click", () => {
+        currentSong.pause();
+        // Decode the filename to match nasheeds entries
+        const currentSongName = decodeURIComponent(currentSong.src.split("/").pop());
+        const index = nasheeds.indexOf(currentSongName);
+        
+        if (index > 0) {
+            playNasheed(nasheeds[index - 1]);
+        } else if (index === 0) {
+            playNasheed(nasheeds[nasheeds.length - 1]); // Optional: Loop to last song
+        }
+    });
 
 // Add event listener to the next button
 next.addEventListener("click", () => {
     currentSong.pause();
-    console.log("next clicked");
-    console.log(currentSong);
-
-    // Extract the current song's filename
-    let currentSongName = currentSong.src.split("/").pop(); // get the filename from the URL
-
-    // Find the index of the current song in the nasheeds array
-    let index = nasheeds.indexOf(currentSongName);
-
-    // Play the next song if the index is valid
+    // Decode the filename to match nasheeds entries
+    const currentSongName = decodeURIComponent(currentSong.src.split("/").pop());
+    const index = nasheeds.indexOf(currentSongName);
+    
     if (index < nasheeds.length - 1) {
         playNasheed(nasheeds[index + 1]);
+    } else if (index === nasheeds.length - 1) {
+        playNasheed(nasheeds[0]); // Optional: Loop to first song
     }
 });
 
