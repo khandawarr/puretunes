@@ -56,6 +56,26 @@ async function main() {
             </li>`;
     });
 
+    // Inside main() after generating list items:
+function handleSongSelection(e) {
+    e.preventDefault(); // Prevent default touch behavior
+    const listItem = e.target.closest("li");
+    if (!listItem) return;
+
+    // Get index of clicked item
+    const index = Array.from(nasheedUl.children).indexOf(listItem);
+    if (index >= 0) {
+        currentSong.pause();
+        playNasheed(nasheeds[index]);
+        // Mobile browsers require explicit user-triggered play()
+        currentSong.play().catch(error => console.log("Playback failed:", error));
+    }
+}
+
+// Add both event listeners
+nasheedUl.addEventListener("click", handleSongSelection);
+nasheedUl.addEventListener("touchstart", handleSongSelection); // Mobile-specific
+
     //Attach an event listener to prev, play & next
 
     play.addEventListener("click", ()=>{

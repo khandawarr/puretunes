@@ -276,7 +276,11 @@
     height: 36px;
 }
 
-.music {
+.nasheedList li {
+    touch-action: manipulation; /* Disable double-tap zoom */
+}
+    
+    .music {
     width: 20px;
 }
 
