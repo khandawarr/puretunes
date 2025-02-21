@@ -1,0 +1,427 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100..900;1,100..900&display=swap'); */
+
+:root {
+    --a: 0;
+}
+
+* {
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.left {
+    padding: 5px;
+    width: 25vw;
+    height: 98vh;
+}
+
+.close {
+    display: none;
+}
+
+.right {
+    position: relative;
+    width: 75vw;
+    margin: 10px 0px;
+}
+
+.logo img {
+    width: 25px;
+}
+
+.home {
+    padding: 10px;
+}
+
+.home ul li {
+    gap: 10px;
+    width: 14px;
+    list-style: none;
+    display: flex;
+    padding-top: 14px;
+}
+
+.logo img {
+    margin-right: 10px;
+}
+
+.heading {
+    gap: 10px;
+    list-style: none;
+    display: flex;
+    padding-top: 14px;
+    font-weight: bold;
+    font-size: 10px;
+    padding-bottom: 20px;
+
+}
+
+.library {
+    padding: 10px;
+    height: 79vh;
+    position: relative;
+}
+
+.heading img {
+    width: 20px;
+}
+
+.heading h2 {
+    width: 155px;
+}
+
+.footer {
+    display: flex;
+    gap: 13px;
+    font-size: 10px;
+    position: absolute;
+    bottom: 5px;
+}
+
+.footer a {
+    list-style: none;
+    color: grey;
+    text-decoration: none;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(52 49 49);
+    margin: 10px;
+}
+
+.hamburger {
+    display: none;
+    cursor: pointer;
+}
+
+.hamburgerContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.header svg {
+    width: 15px;
+    height: 20px;
+}
+
+.header>* {
+    padding: 10px;
+}
+
+.spotifyplaylist {
+    max-height: 78vh;
+    overflow-y: scroll;
+}
+
+.spotifyplaylist h1 {
+    font-size: 20px;
+    margin-left: 20px;
+    /* max-height: 70vh; */
+}
+
+.cardcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    margin: 20px;
+}
+
+.card {
+    width: 150px;
+    padding: 10px;
+    margin-left: 10px;
+    margin-top: 10px;
+    background-color: rgb(52 49 49);
+    position: relative;
+}
+
+.card:hover {
+    --a: 1;
+    background-color: rgb(60, 59, 59);
+    cursor: pointer;
+}
+
+.card>* {
+    margin-top: 10px;
+}
+
+.card img {
+    width: 100%;
+    object-fit: contain;
+}
+
+.play {
+    /* color: aqua; */
+    position: absolute;
+    top: 165px;
+    right: 15px;
+    opacity: var(--a);
+    transition: all 0.8s ease-out;
+}
+
+.play:hover {
+    opacity: 1;
+    top: 110px;
+}
+
+.signbtn {
+    background-color: black;
+    color: #cbcbcb;
+    padding: 12px;
+    border: none;
+    border-radius: 20px;
+    width: 80px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.signbtn:hover {
+    color: white;
+    font-weight: bolder;
+    font-size: 13.2px;
+}
+
+.loginbtn {
+    background-color: white;
+    color: rgb(97, 94, 94);
+    padding: 12px;
+    border: none;
+    border-radius: 20px;
+    width: 80px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.loginbtn:hover {
+    color: black;
+    font-weight: bolder;
+    font-size: 13.2px;
+}
+
+.playbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    color: #2e2b2b;
+    bottom: 25px;
+    width: 94.5%;
+    background-color: rgb(77, 82, 77);
+    margin: -13px 12px;
+    padding: 9px;
+    border-radius: 10px;
+    height: 22px;
+}
+
+.seekbar {
+    height: 4px;
+    width: 98%;
+    background-color: black;
+    filter: invert(1);
+    position: absolute;
+    bottom: 10%;
+    cursor: pointer;
+}
+
+.circle {
+    height: 9px;
+    width: 9px;
+    background-color: white;
+    filter: invert(1);
+    border-radius: 30px;
+    position: absolute;
+    top: -3px;
+    left: 0%;
+    transition: left 0.5s;
+}
+
+.songbuttons>* {
+    width: 25px;
+}
+
+.nasheedList {
+    height: 486px;
+    overflow-y: scroll;
+}
+
+.nasheedList ul {
+    padding: 20px 15px;
+    overflow-y: scroll;
+    /* margin-top: 15px; */
+}
+
+.nasheedList ul li {
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+    display: flex;
+    gap: 10px;
+    cursor: pointer;
+    padding: 5px 15px;
+    border: 2px solid white;
+    margin: 9px 0px;
+    height: 36px;
+}
+
+.music {
+    width: 20px;
+}
+
+.info {
+    font-size: 10px;
+    width: 150px;
+}
+
+.playsvg {
+    width: 20px;
+}
+
+.playnow {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.play-now {
+    margin-bottom: 5px;
+    font-size: 13px;
+}
+
+.songbuttons img {
+    cursor: pointer;
+}
+
+.songinfo {
+    width: 30vw;
+}
+
+.songbuttons {
+    width: 20vw;
+}
+
+.songinfo,
+.songtime {
+    color: white;
+}
+
+.timevol {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}
+
+.range {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.input1 {
+    cursor: pointer;
+    width: 60px;
+    height: 4px;
+}
+
+.abovebar {
+    display: flex;
+    justify-content: space-between;
+}
+
+@media (max-width: 1200px) {
+    .left {
+        background-color: black;
+        position: absolute;
+        left: -110%;
+        transition: all .3s;
+        z-index: 2;
+        width: 381px;
+    }
+
+    .left .close {
+        display: block;
+        position: absolute;
+        right: 31px;
+        top: 25px;
+        cursor: pointer;
+    }
+
+    .right {
+        width: 100vw;
+    }
+
+    .playbar {
+        height: 60px;
+        width: 89%;
+        margin-bottom: 20px;
+        margin-left: 20px;
+    }
+
+    .hamburger {
+        display: block;
+    }
+
+    .abovebar {
+        gap: 1px;
+    }
+
+    .songinfo {
+        width: 40vw;
+    }
+
+    .songbuttons {
+        width: 30vw;
+    }
+
+    .library {
+        height: 82vh;
+    }
+
+    .cardcontainer {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .card {
+        width: 40vw;
+    }
+
+    .range {
+        display: none;
+    }
+
+    .timevol img {
+        display: none;
+    }
+}
+
+@media (max-width: 530px) {
+    .card {
+        width: 90vw;
+    }
+}
+
+@media (max-width: 380px) {
+    .left {
+        width: 360px;
+    }
+
+    .library{
+        height: 77vh;
+    }
+}
