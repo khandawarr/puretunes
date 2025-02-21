@@ -2,94 +2,58 @@ let currentSong = new Audio();
 let nasheeds;
 let currFolder;
 
-// Function to convert seconds to mm:ss format
 function convertSecondsToTime(seconds) {
-    // Ensure seconds is a valid number, and use Math.floor to remove fractions
     seconds = isNaN(seconds) ? 0 : Math.floor(seconds);
-
-    let minutes = Math.floor(seconds / 60);  // Get minutes
-    let remainingSeconds = seconds % 60;    // Get remaining seconds
-
-    // Format the minutes and seconds with leading zeros if necessary using padStart
+    let minutes = Math.floor(seconds / 60);
+    let remainingSeconds = seconds % 60;
     return `${String(minutes).padStart(2, '0')}:${String(remainingSeconds).padStart(2, '0')}`;
 }
 
-
-async function getNasheeds(Folder) {
-    currFolder = Folder
-    let a = await fetch(`https://puretunes1.netlify.app/${Folder}/`);
-    let response = await a.text();
-    // console.log(response);
-    let div = document.createElement("div");
-    div.innerHTML = response;
-    let as = div.getElementsByTagName("a");
-    let nasheeds = [];
-
-    // Loop through all the <a> tags and extract valid audio file paths
-    for (let index = 0; index < as.length; index++) {
-        const element = as[index];
-        let href = element.href;
-
-        // Check if the file is an audio file and ends with .mp3 or .mpeg
-        if (href.endsWith(".mp3") || href.endsWith(".mpeg")) {
-            // Remove unnecessary parts of the file name (e.g., ' - Copy.mpeg' or extra spaces)
-            let cleanHref = href.split(`/${Folder}/`)[1];  // Remove the base path part
-            cleanHref = cleanHref.replace(/ - Copy\.mpeg/g, "");  // Remove " - Copy.mpeg"
-            cleanHref = cleanHref.replace(/ /g, "%20"); // Replace spaces with %20 for URL encoding
-
-            nasheeds.push(cleanHref);  // Add cleaned href to the array
-        }
+async function getNasheeds(folder) {
+    currFolder = folder;
+    try {
+        const response = await fetch(`/${folder}/list.json`);
+        nasheeds = await response.json();
+        return nasheeds;
+    } catch (error) {
+        console.error('Error loading nasheeds:', error);
+        return [];
     }
-    return nasheeds;
 }
 
-
-const playNasheed = (track, pause=false) => {
-    // let audio = new Audio("/nasheeds/" + sanitizedTrack);
-    currentSong.src = `/${currFolder}/` + track
+const playNasheed = (track, pause = false) => {
+    currentSong.src = `/${currFolder}/${encodeURIComponent(track)}`;
     if (!pause) {
         currentSong.play();
-        play.src = "img/pause.svg"
+        play.src = "img/pause.svg";
     }
-    document.querySelector(".songinfo").innerHTML = decodeURI(track)
-    document.querySelector(".songtime").innerHTML = "00:00/00:00"
-}
+    document.querySelector(".songinfo").innerHTML = track;
+    document.querySelector(".songtime").innerHTML = "00:00/00:00";
+};
+
 
 async function main() {
-    nasheeds = await getNasheeds("nasheeds/ncs")
-    playNasheed(nasheeds[0], true)
+    nasheeds = await getNasheeds("nasheeds/ncs");
+    if (nasheeds.length > 0) {
+        playNasheed(nasheeds[0], true);
+    }
 
-    
-    // Show all the nasheeds
-    let nasheedUl = document.querySelector(".nasheedList").getElementsByTagName("ul")[0];
+    let nasheedUl = document.querySelector(".nasheedList ul");
+    nasheedUl.innerHTML = ""; // Clear existing content
 
-    for (const nasheed of nasheeds) {
-
-        // Insert sanitized track into the list
-        nasheedUl.innerHTML = nasheedUl.innerHTML + `
+    nasheeds.forEach(nasheed => {
+        nasheedUl.innerHTML += `
             <li>
                 <img class="music invert" src="img/music.svg" alt="">
                 <div class="info">
-                    <div> ${nasheed.replaceAll("%20", " ")}</div> <!-- Display the name with spaces -->
-                    <div> Dawar </div>
+                    <div>${nasheed.replace(/\.[^/.]+$/, "")}</div>
+                    <div>Dawar</div>
                 </div>
                 <div class="playnow">
                     <div class="play-now">Play now</div>
                     <img class="playsvg invert" src="img/play.svg" alt="">
                 </div>
-            </li>
-        `;
-    }
-
-    // Attach an event listener to each song
-    Array.from(document.querySelector(".nasheedList").getElementsByTagName("li")).forEach(e => {
-        e.addEventListener("click", () => {
-            let trackName = e.querySelector(".info").firstElementChild.innerHTML.trim();
-            console.log("Now playing:", trackName);
-
-            // Play the sanitized version of the track
-            playNasheed(trackName);
-        });
+            </li>`;
     });
 
     //Attach an event listener to prev, play & next
