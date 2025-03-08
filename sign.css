@@ -1,0 +1,295 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    /* background: linear-gradient(45deg, #ff6b6b, #ff8e53, #ffd93d); */
+}
+
+
+body {
+    background-image: linear-gradient(45deg, #d00000, #6a040f, #370617);
+    background-size: cover;
+    /* Optional: Add animation */
+    animation: gradientShift 10s ease infinite;
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    50% {
+        background-position: 100% 50%;
+    }
+
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+
+.signup-container {
+    background: #292929;
+    padding: 40px;
+    border-radius: 5px;
+    box-shadow: 0 0 30px #9a8174;;
+    width: 450px;
+}
+
+h2 {
+    text-align: center;
+    color:  #9a8174;
+    margin-bottom: 30px;
+}
+
+.full{
+    color: #ffd9c4;
+}
+
+.email{
+    color: #ffd9c4;
+}
+
+.pass{
+    color: #ffd9c4;
+}
+
+.confirm{
+    color: #ffd9c4;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+label {
+    display: block;
+    margin-bottom: 8px;
+    color: #555;
+    font-weight: 500;
+}
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 2px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    transition: border-color 0.3s;
+}
+
+input:focus {
+    outline: none;
+    border-color: #ff6b6b;
+}
+
+.password-strength {
+    height: 4px;
+    background: #eee;
+    margin-top: 8px;
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.strength-bar {
+    height: 100%;
+    width: 0;
+    transition: width 0.3s;
+}
+
+.error-message {
+    color: #e74c3c;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+}
+
+button {
+    width: 100%;
+    padding: 14px;
+    background: #9a8174;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #302a18;
+}
+
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+    color: #666;
+}
+
+.login-link a {
+    color: #ffd9c4;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.success-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: rgba(255, 255, 255, 0.95);
+    z-index: 1000;
+}
+
+.success-message {
+    text-align: center;
+    padding: 40px;
+    background: white;
+    border-radius: 20px;
+    box-shadow: 0 0 30px rgba(0, 0, 0, 0.1);
+    max-width: 500px;
+}
+
+.checkmark {
+    width: 80px;
+    height: 80px;
+    fill: none;
+    stroke: #2ecc71;
+    stroke-width: 4;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    margin-bottom: 20px;
+    animation: draw 1.5s ease-in-out;
+}
+
+/* Success Page Styling to Match Your Theme */
+.success-container {
+    background: rgba(41, 41, 41, 0.95); /* Dark overlay matching signup container */
+}
+
+.success-message {
+    background: #3a3a3a; /* Dark gray matching your form background */
+    border: 1px solid #9a8174; /* Accent border */
+    box-shadow: 0 0 30px #9a8174; /* Matching your form shadow */
+}
+
+.checkmark {
+    stroke: #9a8174; /* Using your main accent color */
+}
+
+.success-message h2 {
+    color: #ffd9c4; /* Using your text color */
+}
+
+.success-message p {
+    color: #9a8174; /* Using your secondary color */
+}
+
+.success-message a {
+    background: #9a8174; /* Matching your button color */
+    color: #302a18; /* Dark text for contrast */
+}
+
+.success-message a:hover {
+    background: #ffd9c4; /* Using your text color as hover */
+    color: #302a18;
+}
+
+/* Modified Existing Styles for Better Contrast */
+.signup-container {
+    background: #292929; /* Dark gray */
+    border: 1px solid #9a8174; /* Add accent border */
+}
+
+.h2 {
+    color: #ffd9c4; /* Light peach */
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.p{
+    color: #ffd9c4; /* Light peach */
+    font-size: 2em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+}
+
+.a{
+    color: #ffd9c4; /* Light peach */
+}
+
+button {
+    background: #9a8174; /* Muted tan */
+    color: #302a18; /* Dark brown text */
+    border: 2px solid #9a8174;
+    transition: all 0.3s ease;
+}
+
+button:hover {
+    background: #302a18; /* Dark brown */
+    color: #ffd9c4; /* Light peach */
+    border-color: #302a18;
+}
+
+.login-link {
+    color: #9a8174; /* Muted tan */
+}
+
+.login-link a:hover {
+    color: #ffd9c4; /* Light peach */
+}
+
+/* Enhanced Input Styling */
+input {
+    background: #3a3a3a; /* Darker gray */
+    border-color: #9a8174; /* Muted tan */
+    color: #ffd9c4; /* Light peach */
+}
+
+input:focus {
+    border-color: #ffd9c4; /* Light peach */
+    box-shadow: 0 0 8px rgba(255, 217, 196, 0.3);
+}
+
+/* Password Strength Bar Colors */
+.strength-bar {
+    /* Update these colors to match your theme */
+    background: #9a8174 !important; /* Muted tan */
+}
+
+/* Error Message Styling */
+.error-message {
+    color: #ff6b6b; /* Brighter red for better visibility */
+    font-weight: 500;
+}
+
+@keyframes draw {
+    0% { stroke-dashoffset: 1000; }
+    100% { stroke-dashoffset: 0; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@media (max-width: 480px) {
+    .signup-container {
+        width: 90%;
+        padding: 25px;
+    }
+}

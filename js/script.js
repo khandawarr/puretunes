@@ -57,33 +57,33 @@ async function main() {
     });
 
     // Inside main() after generating list items:
-function handleSongSelection(e) {
-    e.preventDefault(); // Prevent default touch behavior
-    const listItem = e.target.closest("li");
-    if (!listItem) return;
+    function handleSongSelection(e) {
+        e.preventDefault(); // Prevent default touch behavior
+        const listItem = e.target.closest("li");
+        if (!listItem) return;
 
-    // Get index of clicked item
-    const index = Array.from(nasheedUl.children).indexOf(listItem);
-    if (index >= 0) {
-        currentSong.pause();
-        playNasheed(nasheeds[index]);
-        // Mobile browsers require explicit user-triggered play()
-        currentSong.play().catch(error => console.log("Playback failed:", error));
+        // Get index of clicked item
+        const index = Array.from(nasheedUl.children).indexOf(listItem);
+        if (index >= 0) {
+            currentSong.pause();
+            playNasheed(nasheeds[index]);
+            // Mobile browsers require explicit user-triggered play()
+            currentSong.play().catch(error => console.log("Playback failed:", error));
+        }
     }
-}
 
-// Add both event listeners
-nasheedUl.addEventListener("click", handleSongSelection);
-nasheedUl.addEventListener("touchstart", handleSongSelection); // Mobile-specific
+    // Add both event listeners
+    nasheedUl.addEventListener("click", handleSongSelection);
+    nasheedUl.addEventListener("touchstart", handleSongSelection); // Mobile-specific
 
     //Attach an event listener to prev, play & next
 
-    play.addEventListener("click", ()=>{
+    play.addEventListener("click", () => {
         if (currentSong.paused) {
             currentSong.play()
-             play.src = "img/pause.svg"
-           
-        } else{
+            play.src = "img/pause.svg"
+
+        } else {
             currentSong.pause()
             play.src = "img/play.svg"
         }
@@ -95,7 +95,7 @@ nasheedUl.addEventListener("touchstart", handleSongSelection); // Mobile-specifi
         if (!isNaN(currentSong.currentTime) && !isNaN(currentSong.duration)) {
             // Format and display the time as "mm:ss / mm:ss"
             document.querySelector(".songtime").innerHTML = `${convertSecondsToTime(currentSong.currentTime)}/${convertSecondsToTime(currentSong.duration)}`;
-            document.querySelector(".circle").style.left = (currentSong.currentTime/currentSong.duration) * 100 + "%"
+            document.querySelector(".circle").style.left = (currentSong.currentTime / currentSong.duration) * 100 + "%"
         }
     });
 
@@ -103,23 +103,23 @@ nasheedUl.addEventListener("touchstart", handleSongSelection); // Mobile-specifi
     document.querySelector(".seekbar").addEventListener("click", (e) => {
         // Get the width of the seekbar and the position of the click
         let percent = (e.offsetX / e.target.offsetWidth) * 100;
-        
+
         // Move the circle to the clicked position
         document.querySelector(".circle").style.left = percent + "%";
-    
+
         // Set the current song's time based on the percentage
         currentSong.currentTime = (currentSong.duration * percent) / 100;
     });
-    
+
     //add event listener to hamburger 
 
-    document.querySelector(".hamburger").addEventListener("click", ()=>{
+    document.querySelector(".hamburger").addEventListener("click", () => {
         document.querySelector(".left").style.left = "0"
     })
 
-     //add event listener to close
+    //add event listener to close
 
-     document.querySelector(".close").addEventListener("click", ()=>{
+    document.querySelector(".close").addEventListener("click", () => {
         document.querySelector(".left").style.left = "-110%"
     })
 
@@ -129,7 +129,7 @@ nasheedUl.addEventListener("touchstart", handleSongSelection); // Mobile-specifi
         // Decode the filename to match nasheeds entries
         const currentSongName = decodeURIComponent(currentSong.src.split("/").pop());
         const index = nasheeds.indexOf(currentSongName);
-        
+
         if (index > 0) {
             playNasheed(nasheeds[index - 1]);
         } else if (index === 0) {
@@ -137,26 +137,35 @@ nasheedUl.addEventListener("touchstart", handleSongSelection); // Mobile-specifi
         }
     });
 
-// Add event listener to the next button
-next.addEventListener("click", () => {
-    currentSong.pause();
-    // Decode the filename to match nasheeds entries
-    const currentSongName = decodeURIComponent(currentSong.src.split("/").pop());
-    const index = nasheeds.indexOf(currentSongName);
-    
-    if (index < nasheeds.length - 1) {
-        playNasheed(nasheeds[index + 1]);
-    } else if (index === nasheeds.length - 1) {
-        playNasheed(nasheeds[0]); // Optional: Loop to first song
-    }
-});
+    // Add event listener to the next button
+    next.addEventListener("click", () => {
+        currentSong.pause();
+        // Decode the filename to match nasheeds entries
+        const currentSongName = decodeURIComponent(currentSong.src.split("/").pop());
+        const index = nasheeds.indexOf(currentSongName);
 
-    document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change", (e)=>{
-        console.log("settng volume to",e.target.value ,"/100");
-        currentSong.volume = parseInt(e.target.value)/100 ;
-        
+        if (index < nasheeds.length - 1) {
+            playNasheed(nasheeds[index + 1]);
+        } else if (index === nasheeds.length - 1) {
+            playNasheed(nasheeds[0]); // Optional: Loop to first song
+        }
+    });
+
+    document.querySelector(".range").getElementsByTagName("input")[0].addEventListener("change", (e) => {
+        console.log("settng volume to", e.target.value, "/100");
+        currentSong.volume = parseInt(e.target.value) / 100;
+
     })
 
-}
+    document.getElementById("sign").addEventListener("click", () => {
+        window.location.href = "./sign.html"; // Add the './' prefix
+    });
+    
+    // For login.html
+    document.getElementById("login").addEventListener("click", () => {
+        window.location.href = "./login.html";
+    });
 
-main();
+    }
+
+    main();
