@@ -348,6 +348,7 @@
 
 .my{
     color:slategrey;
+    font-size: 10px;
 }
 
 @media (max-width: 1200px) {
