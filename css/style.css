@@ -346,6 +346,10 @@
     justify-content: space-between;
 }
 
+.my{
+    color:slategrey;
+}
+
 @media (max-width: 1200px) {
     .left {
         background-color: black;
